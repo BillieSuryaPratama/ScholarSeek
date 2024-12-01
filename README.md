@@ -2,7 +2,7 @@
 # ScholarSeek - Aplikasi Pencarian Beasiswa untuk Memudahkan Pengelolaan Informasi Beasiswa bagi Pelajar SMA dan Mahasiswa
 <br>
 
-Anggota Kelompok
+Anggota Kelompok:
 <br>
 |NAMA|NIM|
 | --- | --- |
