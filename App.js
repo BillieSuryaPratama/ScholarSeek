@@ -3,17 +3,17 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import OnBoardingScreen from './screens/OnBoardingScreen';
 import LoginScreen from './screens/LoginScreen';
-import SignupScreen from './screens/SignupScreen'; // Pastikan ini sesuai dengan nama file
+import SignupScreen from './screens/SignupScreen';
 
 const Stack = createNativeStackNavigator();
 
 const AppNavigator = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Signup"> {/* Pastikan ini sesuai */}
+      <Stack.Navigator initialRouteName="Signup">
         <Stack.Screen name="OnBoarding" component={OnBoardingScreen} />
         <Stack.Screen name="Login" component={LoginScreen} />
-        <Stack.Screen name="Signup" component={SignupScreen} /> {/* Pastikan ini sesuai */}
+        <Stack.Screen name="Signup" component={SignupScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

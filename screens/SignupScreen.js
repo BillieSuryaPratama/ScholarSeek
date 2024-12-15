@@ -1,10 +1,9 @@
 import { View, Text, TouchableOpacity, TextInput, Button } from "react-native";
-import React, { useState } from "react"; // Perbaiki 'UseState' menjadi 'useState'
-import { useNavigation } from '@react-navigation/native';
-import { signInWithEmailAndPassword } from "firebase/auth";
+import React, { useState } from "react";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebaseconfig";
 
-export default function Signup({ navigation }) { // Ganti 'Login' menjadi 'Signup'
+export default function Signup({ navigation }) {
     const [Username, setUsername] = useState("");
     const [Email, setEmail] = useState("");
     const [Password, setPassword] = useState("");
@@ -12,7 +11,7 @@ export default function Signup({ navigation }) { // Ganti 'Login' menjadi 'Signu
 
     const handleLogin = async () => {
         try {
-            const user = await signInWithEmailAndPassword(auth, Email, Password);
+            const user = await createUserWithEmailAndPassword(auth, Email, Password);
             if (user) {
                 navigation.navigate('contoh');
             }
@@ -28,7 +27,7 @@ export default function Signup({ navigation }) { // Ganti 'Login' menjadi 'Signu
             alignItems: "center",
             justifyContent: "center",
         }}>
-            <Text>Signup</Text> {/* Ubah teks sesuai konteks */}
+            <Text>Signup</Text>
             <TextInput
                 placeholder="Username"
                 value={Username}
