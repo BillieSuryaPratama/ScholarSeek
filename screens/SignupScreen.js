@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, TextInput, Button } from "react-native";
+import { View, Text, TouchableOpacity, TextInput, Button, StyleSheet } from "react-native";
 import React, { useState } from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebaseconfig";
@@ -13,7 +13,7 @@ export default function Signup({ navigation }) {
         try {
             const user = await createUserWithEmailAndPassword(auth, Email, Password);
             if (user) {
-                navigation.navigate('contoh');
+                navigation.navigate('Login');
             }
         } catch (error) {
             console.log(error);
@@ -22,56 +22,32 @@ export default function Signup({ navigation }) {
     };
 
     return (
-        <View style={{
-            flex: 1,
-            alignItems: "center",
-            justifyContent: "center",
-        }}>
+        <View style={styles.container}>
             <Text>Signup</Text>
             <TextInput
                 placeholder="Username"
                 value={Username}
                 onChangeText={setUsername}
-                style={{
-                    height: 40,
-                    borderColor: "gray",
-                    borderWidth: 1,
-                    marginBottom: 10,
-                }}
+                style={styles.InputBox}
             />
             <TextInput
                 placeholder="Email"
                 value={Email}
                 onChangeText={setEmail}
-                style={{
-                    height: 40,
-                    borderColor: "gray",
-                    borderWidth: 1,
-                    marginBottom: 10,
-                }}
+                style={styles.InputBox}
             />
             <TextInput
                 placeholder="Password"
                 value={Password}
                 onChangeText={setPassword}
-                style={{
-                    height: 40,
-                    borderColor: "gray",
-                    borderWidth: 1,
-                    marginBottom: 10,
-                }}
+                style={styles.InputBox}
                 secureTextEntry
             />
             <TextInput
                 placeholder="Confirm Password"
                 value={ConfirmPassword}
                 onChangeText={setConfirmPassword}
-                style={{
-                    height: 40,
-                    borderColor: "gray",
-                    borderWidth: 1,
-                    marginBottom: 10,
-                }}
+                style={styles.InputBox}
                 secureTextEntry
             />
             <Button
@@ -85,3 +61,21 @@ export default function Signup({ navigation }) {
         </View>
     );
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        alignItems: "center",
+        justifyContent: "center",
+        padding: 16,
+    },
+    InputBox: {
+        height: 40,
+        width: '60%',
+        borderColor: "gray",
+        borderWidth: 1,
+        borderRadius: 10,
+        paddingHorizontal: 10,
+        marginBottom: 10,
+    },
+});
