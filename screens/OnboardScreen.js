@@ -29,12 +29,6 @@ const OnboardScreen = ({ navigation }) => {
         },
     ];
 
-    const handleNext = () => {
-        if (currentSlide < slides.length - 1) {
-            setCurrentSlide(currentSlide + 1);
-        }
-    };
-
     const handleLogin = () => {
         navigation.navigate('Login');
     };

@@ -11,7 +11,7 @@ export default function Login({ navigation }) {
         try {
             const user = await signInWithEmailAndPassword(auth, Email, Password);
             if (user) {
-                navigation.navigate('Onboard');
+                navigation.navigate('Home');
             }
         } catch (error) {
             console.log(error);
