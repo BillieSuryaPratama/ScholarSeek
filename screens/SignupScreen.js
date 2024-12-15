@@ -9,7 +9,7 @@ export default function Signup({ navigation }) {
     const [Password, setPassword] = useState("");
     const [ConfirmPassword, setConfirmPassword] = useState("");
 
-    const handleLogin = async () => {
+    const handleSignup = async () => {
         try {
             const user = await createUserWithEmailAndPassword(auth, Email, Password);
             if (user) {
@@ -23,7 +23,7 @@ export default function Signup({ navigation }) {
 
     return (
         <View style={styles.container}>
-            <Text>Signup</Text>
+            <Text style={styles.signupText}>Signup</Text>
             <TextInput
                 placeholder="Username"
                 value={Username}
@@ -50,14 +50,22 @@ export default function Signup({ navigation }) {
                 style={styles.InputBox}
                 secureTextEntry
             />
-            <Button
-                title="Login"
-                onPress={handleLogin}
-            />
             <TouchableOpacity
-                onPress={() => navigation.navigate('Register')}>
-                <Text>Register</Text>
+                style={styles.Button}
+                onPress={handleSignup}
+            >
+                <Text style={styles.ButtonText}>Signup</Text>
             </TouchableOpacity>
+
+            <View style={styles.loginContainer}>
+                <Text style={styles.loginText}>
+                    Sudah memiliki akun?
+                </Text>
+                <TouchableOpacity onPress={() => navigation.navigate('Login')}>
+                    <Text style={styles.loginLink}> Login</Text>
+                </TouchableOpacity>
+            </View>
+
         </View>
     );
 }
@@ -69,6 +77,11 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         padding: 16,
     },
+    signupText: {
+        fontSize: 24,
+        fontWeight: 'bold',
+        marginBottom: 20,
+    },
     InputBox: {
         height: 40,
         width: '60%',
@@ -78,4 +91,27 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
         marginBottom: 10,
     },
+    Button: {
+        height: 40,
+        width: '60%',
+        borderRadius: 10,
+        backgroundColor: '#24A0ED',
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginBottom: 10,
+    },
+    ButtonText: {
+        color: 'white',
+        fontSize: 16,
+    },
+    loginContainer: {
+        flexDirection: 'row',
+        marginTop: 5,
+    },
+    loginText: {
+    },
+    loginLink: {
+        color: '#24A0ED',
+        fontWeight: 'bold',
+    }
 });
