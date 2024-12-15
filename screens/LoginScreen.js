@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, TextInput, Button, StyleSheet } from "react-native";
+import { View, Text, TouchableOpacity, TextInput, StyleSheet } from "react-native";
 import React, { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebaseconfig";
@@ -15,13 +15,13 @@ export default function Login({ navigation }) {
             }
         } catch (error) {
             console.log(error);
-            alert('Error');
+            alert('Error: ' + error.message);
         }
     };
 
     return (
         <View style={styles.container}>
-            <Text>Signup</Text>
+            <Text style={styles.loginText}>Login</Text>
             <TextInput
                 placeholder="Email"
                 value={Email}
@@ -35,14 +35,21 @@ export default function Login({ navigation }) {
                 style={styles.InputBox}
                 secureTextEntry
             />
-            <Button
-                title="Login"
-                onPress={handleLogin}
-            />
             <TouchableOpacity
-                onPress={() => navigation.navigate('Register')}>
-                <Text>Register</Text>
+                style={styles.Button}
+                onPress={handleLogin}
+            >
+                <Text style={styles.ButtonText}>Login</Text>
             </TouchableOpacity>
+
+            <View style={styles.signupContainer}>
+                <Text style={styles.signupText}>
+                    Belum memiliki akun?
+                </Text>
+                <TouchableOpacity onPress={() => navigation.navigate('Signup')}>
+                    <Text style={styles.signupLink}> Signup</Text>
+                </TouchableOpacity>
+            </View>
         </View>
     );
 }
@@ -54,6 +61,11 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         padding: 16,
     },
+    loginText: {
+        fontSize: 24,
+        fontWeight: 'bold',
+        marginBottom: 20,
+    },
     InputBox: {
         height: 40,
         width: '60%',
@@ -63,4 +75,27 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
         marginBottom: 10,
     },
+    Button: {
+        height: 40,
+        width: '60%',
+        borderRadius: 10,
+        backgroundColor: '#24A0ED',
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginBottom: 10,
+    },
+    ButtonText: {
+        color: 'white',
+        fontSize: 16,
+    },
+    signupContainer: {
+        flexDirection: 'row',
+        marginTop: 5,
+    },
+    signupText: {
+    },
+    signupLink: {
+        color: '#24A0ED',
+        fontWeight: 'bold',
+    }
 });

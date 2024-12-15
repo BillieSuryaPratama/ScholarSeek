@@ -4,12 +4,14 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebaseconfig";
 
 export default function Signup({ navigation }) {
-    const [Username, setUsername] = useState("");
     const [Email, setEmail] = useState("");
     const [Password, setPassword] = useState("");
     const [ConfirmPassword, setConfirmPassword] = useState("");
 
     const handleSignup = async () => {
+        if (Password !== ConfirmPassword) {
+            return;
+        }
         try {
             const user = await createUserWithEmailAndPassword(auth, Email, Password);
             if (user) {
@@ -17,19 +19,13 @@ export default function Signup({ navigation }) {
             }
         } catch (error) {
             console.log(error);
-            alert('Error');
+            alert('Error: ' + error.message);
         }
     };
 
     return (
         <View style={styles.container}>
             <Text style={styles.signupText}>Signup</Text>
-            <TextInput
-                placeholder="Username"
-                value={Username}
-                onChangeText={setUsername}
-                style={styles.InputBox}
-            />
             <TextInput
                 placeholder="Email"
                 value={Email}
