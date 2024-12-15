@@ -1,26 +1,26 @@
-import { View, Text, TouchableOpacity, TextInput, Button, Touchable } from "react-native";
-import React, { UseState } from "react";
+import { View, Text, TouchableOpacity, TextInput, Button } from "react-native";
+import React, { useState } from "react"; // Perbaiki 'UseState' menjadi 'useState'
+import { useNavigation } from '@react-navigation/native';
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebaseconfig";
 
-export default function Login ({ navigation }) {
+export default function Signup({ navigation }) { // Ganti 'Login' menjadi 'Signup'
     const [Username, setUsername] = useState("");
     const [Email, setEmail] = useState("");
-    const [Password, setPassword] = useState("")
-    const [ConfirmPassword, setConfirmPassword] = useState("")
+    const [Password, setPassword] = useState("");
+    const [ConfirmPassword, setConfirmPassword] = useState("");
 
     const handleLogin = async () => {
         try {
-            const user = await signInWithEmailAndPassword(auth, Email, Password)
+            const user = await signInWithEmailAndPassword(auth, Email, Password);
             if (user) {
                 navigation.navigate('contoh');
             }
-        }
-        catch (error) {
+        } catch (error) {
             console.log(error);
-            alert('Error')
+            alert('Error');
         }
-    }
+    };
 
     return (
         <View style={{
@@ -28,7 +28,7 @@ export default function Login ({ navigation }) {
             alignItems: "center",
             justifyContent: "center",
         }}>
-            <Text>Login</Text>
+            <Text>Signup</Text> {/* Ubah teks sesuai konteks */}
             <TextInput
                 placeholder="Username"
                 value={Username}
@@ -81,7 +81,7 @@ export default function Login ({ navigation }) {
             />
             <TouchableOpacity
                 onPress={() => navigation.navigate('Register')}>
-                    <Text>Register</Text>
+                <Text>Register</Text>
             </TouchableOpacity>
         </View>
     );
