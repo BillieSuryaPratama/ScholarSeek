@@ -22,9 +22,7 @@ const firebaseConfig = {
   };
 
 export const app = initializeApp(firebaseConfig);
-export const auth = initializeAuth(app, {
-  persistence: getReactNativePersistence(ReactNativeAsyncStorage)
-});
+export const auth = initializeAuth(app);
 export const db = getFirestore(app);
 export const storage = getStorage(app);
 // For more information on how to access Firebase in your project,
